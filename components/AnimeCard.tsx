@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { motion } from 'framer-motion'
 
 export interface AnimeProp {
   id: string;
@@ -17,9 +18,9 @@ interface Prop {
   index: number;
 }
 
-function AnimeCard({ anime }: Prop) {
+function AnimeCard({ anime, index }: Prop) {
   return (
-    <div className="max-w-sm rounded relative w-full">
+    <motion.div initial={{ opacity: 0, x: (Math.random() > 0.5 ? Math.random() * Math.random() : -Math.random() * Math.random()) }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3, ease: "easeInOut", delay: index * 0.2 }} className="max-w-sm rounded relative w-full">
       <div className="relative w-full h-[37vh]">
         <Image
           src={`https://shikimori.one${anime.image.original}`}
@@ -64,7 +65,7 @@ function AnimeCard({ anime }: Prop) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
